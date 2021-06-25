@@ -1,0 +1,231 @@
+%https://www.uweziegenhagen.de/wp-content/uploads/2016/04/UweZiegenhagen.pdf
+
+\documentclass[a4paper,ngerman,12pt,addpoints]{exam}
+\usepackage{babel}
+\usepackage[top=3.5cm,headsep=0.5cm,headheight=3cm,left=1.5cm,right=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs} % schöne Tabellen
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{csquotes} % Anführungszeichen
+\usepackage{paralist} % kompakte Aufzählungen
+\usepackage{amsmath,textcomp,tikz} 
+\usepackage{eso-pic} % Bilder im Hintergrund
+\usepackage{mdframed}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tabu}
+\usepackage{enumitem}
+\usepackage{array}
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%\fontfamily{phv}\selectfont
+
+\pointpoints{Punkt}{Punkte}
+\bonuspointpoints{Bonuspunkt}{Bonuspunkte}
+\renewcommand{\solutiontitle}{\noindent\textbf{Lösung:}%
+\enspace}
+\chqword{Frage} 
+\chpgword{Seite}
+\chpword{Punkte}
+\chbpword{Bonus Punkte}
+\chsword{Erreicht}
+\chtword{Gesamt}
+
+\hpword{Punkte:} % Punktetabelle
+\hsword{Ergebnis:}
+\hqword{Aufgabe:}
+\htword{Summe:}
+
+\newcommand{\exdate}{1. Februar 2020} % nicht verwenden => extra Deckblatt
+\newcommand{\exroom}{HS 1 2 3} % nicht verwenden => extra Deckblatt
+\newcommand{\exsubject}{Programmieren in C}
+\newcommand{\exsubjectfooter}{\exsubject}
+\newcommand{\exsemester}{WS 20/21}
+\newcommand{\exrunner}{Prof. Dr. Sven Karol}
+\newcommand{\exschool}{Hochschule Merseburg}
+\newcommand{\exduration}{60 Minuten}
+\newcommand{\exaids}{\textbf{Zulässige Hilfsmittel in nichtdigitaler Form:} eigene Notizen (1 Blatt A4, beidseitig) sowie das Vorlesungsskript (Slides) oder ein Buch zur C Programmierung. Andere Hilfsmittel und insbesondere die Kommunikation mit Anderen sind nicht erlaubt!}
+
+\renewcommand\questionlabel{\textbf{Aufgabe \thequestion.}}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{Name:}{Kennnummer:}{}
+\runningheader{Name:}{Kennnummer:}{}
+\firstpagefooter{\exsubjectfooter}{Klausur \exsemester}{Seite \thepage\ von \numpages}
+\runningfooter{\exsubjectfooter}{Klausur \exsemester}{Seite \thepage\ von \numpages}
+\runningfootrule
+\firstpagefootrule
+\coverfirstpageheader{\small HS Merseburg, Fachbereich Wirtschaftswissenschaften und Informationswissenschaften}{}{\small \exsemester}
+\coverfirstpageheadrule
+
+\newmdenv[linecolor=black,backgroundcolor=gray!15,frametitle={Punktverteilung},leftmargin=1cm,rightmargin=1cm]{infobox}
+\newcommand{\punkte}[1]{%
+\begin{infobox}
+    #1 
+\end{infobox}}
+
+\newcommand{\excover}{
+    \begin{coverpages}
+        
+        \noindent{}\textbf{\exschool}\\
+        \exrunner
+        \vspace{1cm}
+        %
+        \begin{center}
+        \Large
+            Klausur zur Lehrveranstaltung\\ \textit{\exsubject}
+        \end{center}
+        %
+        \vspace*{1cm}
+        %
+        \begin{center}
+        \begin{tabularx}{450pt}{|X|X|}%
+        \hline
+        %\rowcolor[gray]{.9}
+        %\textbf{Datum:} \exdate & \textbf{Raum:} \exroom \\
+        %\hline
+        \rowcolor[gray]{.9}
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+1\arrayrulewidth\relax}X|}{\textbf{Bearbeitungszeit:} \exduration}\\
+        \hline
+        \rowcolor[gray]{.9}
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+1\arrayrulewidth\relax}X|}{\exaids}\\
+        \hline
+        \rowcolor[gray]{.9}
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+1\arrayrulewidth\relax}X|}{\parbox{0.8\textwidth}{%
+        \vspace{2pt}
+        \textbf{Sonstige Hinweise:}%
+        \vspace{-\topsep}
+        \begin{itemize}[leftmargin=*]%
+            \setlength{\parskip}{0pt}
+            \setlength{\itemsep}{0pt plus 1pt}
+            \item Die Klausur besteht aus \numpages{} Seiten.
+            \item Tragen Sie Ihren Vor- und Nachnamen, Ihre Matrikelnummer und Ihren Studiengang auf dem Deckblatt ein, bevor Sie mit der Bearbeitung beginnen!
+            \item Tragen Sie auf jedem Arbeitsblatt Ihren Namen und Ihre Matrikelnummer in die jeweilige Kopfzeile ein.
+            \item Schreiben Sie Ihre Antworten an die entsprechenden Stellen des Aufgabenblatts und nutzen Sie ggf. die leeren Rückseiten!
+            %\item Sofern nicht anders angegeben, nehmen Sie die Korrektheit von gegebenem Programm-Code an und ergänzen Sie fehlende Programmteile durch schlüssige Annahmen!
+            \item Schreiben Sie deutlich, unkenntliche Antworten werden nicht berücksichtigt!
+        \end{itemize}%
+        \begin{center}\textbf{Viel Erfolg!}\end{center} 
+        }}\\
+        \hline
+        \end{tabularx}
+        \end{center}
+        %
+        \vspace*{1cm}
+        %
+        \begin{center}
+        \extrarowsep=5pt
+        \begin{tabu} to 330pt {| X | X[2] |}%
+        \hline
+        \textbf{Vorname:}& \\
+        \hline
+        \textbf{Nachname:}& \\
+        \hline
+        \textbf{Kennnummer:}& \\
+        \hline
+        \textbf{Studiengang:}& \\
+        \hline
+        \end{tabu}
+        \end{center}
+        %
+        \vspace*{1cm}
+        %
+        \begin{center}
+        \gradetable[h][questions] 
+        \end{center}
+        
+        
+        \end{coverpages}
+}
+
+%https://tex.stackexchange.com/questions/332357/customizing-the-length-of-dotfill
+%\newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfill}}
+
+\newcommand{\excoverplus}{
+    \setlength{\parindent}{0pt}
+    \begin{coverpages}
+        \thispagestyle{headandfoot}
+        
+        \vspace*{0.1cm}
+        
+        \large
+        \begin{center}
+         {\renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{ll}
+        \textbf{Modulklausur:} & \textbf{\exsubject}  \\
+        \textbf{Prüfer:} & \textbf{\exrunner} \\
+        \textbf{Datum:} & \makebox[4.5cm]{\dotfill}\\
+        \end{tabular}
+         }
+        \end{center}
+        \normalsize
+        
+        \vspace*{0.9cm}
+        
+        Dieser Klausurteil besteht aus \numpages{} Seiten. Die Vollständigkeit der Aufgabenstellungen wurde von mir zu Beginn der Klausur geprüft und mit meiner Unterschrift bestätigt: 
+        
+        \vspace*{1cm}
+        
+        {\renewcommand{\arraystretch}{0.8}
+        \noindent\begin{tabularx}{\textwidth}{llllXlX}
+        \makebox[2.5cm]{\dotfill} &&  \makebox[2.5cm]{\dotfill}  && \dotfill && \dotfill \\
+        Kenn-Nr. && Studiengang && Name, Vorname && Unterschrift \\
+        && && des Klausurteilnehmers && des Klausurteilnehmers \\
+        && && (Blockschrift) && \\
+        \end{tabularx}}
+        %\renewcommand{\arraystretch}{1}
+        
+        \vspace*{0.6cm}
+        
+        \begin{minipage}{0.7\textwidth}
+            \centering
+            \gradetable[h][questions]        
+        \end{minipage}%
+        \begin{minipage}{0.2\textwidth}
+        {\renewcommand{\arraystretch}{1.5}% 
+            \begin{tabularx}{3cm}{|X|}
+                \hline
+                \centering Note: \tabularnewline
+                \hline
+                \rule{0cm}{1.0cm} \tabularnewline
+                \hline
+            \end{tabularx}}  
+        \end{minipage}%
+ 
+        %\begin{tabularx}{\textwidth}{|X|X|X|X|}
+        %\hline
+        %\centering Punkte & \centering evtl. Bonuspunkte & \centering Gesamtpunkte & \centering evtl. Note \tabularnewline
+        %\hline
+        %\rule{0cm}{1.0cm} &&& \tabularnewline
+        %\hline
+        %\end{tabularx}
+        
+        \vspace*{0.5cm}
+        \begin{tabularx}{\textwidth}{lX}
+        Erreichbare Punktzahl: & \numpoints{} Punkte\\
+        Bearbeitungszeit: & \exduration\\
+        Zugelassene Hilfsmittel: & \exaids\\
+        \end{tabularx}
+        
+        \vspace*{0.6cm}
+        
+        Tragen Sie auf jeder Seite Ihren Namen und Ihre Kennnummer in die Kopfzeile ein!
+        \vspace*{0.4cm}
+
+        Anzahl der vom Klausurteilnehmer angefügten Zusatzblätter: \dotfill
+        
+        \vspace*{0.4cm}
+        
+
+
+        Bitte achten Sie auf eine leserliche Schrift!
+        \vspace*{0.4cm}
+
+        \hrulefill
+    \end{coverpages}
+}

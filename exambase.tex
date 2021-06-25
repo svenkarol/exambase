@@ -49,6 +49,9 @@
 \newcommand{\exduration}{60 Minuten}
 \newcommand{\exaids}{\textbf{Zulässige Hilfsmittel in nichtdigitaler Form:} eigene Notizen (1 Blatt A4, beidseitig) sowie das Vorlesungsskript (Slides) oder ein Buch zur C Programmierung. Andere Hilfsmittel und insbesondere die Kommunikation mit Anderen sind nicht erlaubt!}
 
+\newif\ifseptitle% default is \ifseptitlefalse
+\septitletrue
+
 \renewcommand\questionlabel{\textbf{Aufgabe \thequestion.}}
 
 \pagestyle{headandfoot}
@@ -159,15 +162,18 @@
         \begin{tabular}{ll}
         \textbf{Modulklausur:} & \textbf{\exsubject}  \\
         \textbf{Prüfer:} & \textbf{\exrunner} \\
+        \ifseptitle%
         \textbf{Datum:} & \makebox[4.5cm]{\dotfill}\\
+        \fi%
         \end{tabular}
          }
         \end{center}
         \normalsize
         
         \vspace*{0.9cm}
-        
-        Dieser Klausurteil besteht aus \numpages{} Seiten. Die Vollständigkeit der Aufgabenstellungen wurde von mir zu Beginn der Klausur geprüft und mit meiner Unterschrift bestätigt: 
+        \ifseptitle%
+        Dieser Klausurteil besteht aus \numpages{} Seiten. %
+        Die Vollständigkeit der Aufgabenstellungen wurde von mir zu Beginn der Klausur geprüft und mit meiner Unterschrift bestätigt: 
         
         \vspace*{1cm}
         
@@ -179,7 +185,11 @@
         && && (Blockschrift) && \\
         \end{tabularx}}
         %\renewcommand{\arraystretch}{1}
-        
+        \else
+        \begin{center}
+            Dieser Klausurteil besteht aus \numpages{} Seiten.
+        \end{center}
+        \fi
         \vspace*{0.6cm}
         
         \begin{minipage}{0.7\textwidth}
@@ -216,10 +226,11 @@
         
         Tragen Sie auf jeder Seite Ihren Namen und Ihre Kennnummer in die Kopfzeile ein!
         \vspace*{0.4cm}
-
+        \ifseptitle
         Anzahl der vom Klausurteilnehmer angefügten Zusatzblätter: \dotfill
         
         \vspace*{0.4cm}
+        \fi
         
 
 
